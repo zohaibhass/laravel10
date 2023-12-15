@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title','login')
+@section('header','Peaks Platter')
+
 
 @section('content')
 <div class="container">

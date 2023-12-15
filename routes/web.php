@@ -18,6 +18,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('about_page', function () {
+    return view('about');
+});
+
+Route::get('services_page', function () {
+    return view('services');
+});
+
+Route::get('menu_page', function () {
+    return view('menu');
+});
+
+Route::get('contact_page', function () {
+    return view('contact');
+});
+
+
+
 Route::get('/dashboard', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,6 +48,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
