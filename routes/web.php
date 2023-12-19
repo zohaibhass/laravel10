@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\controllers\UserController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,20 +39,47 @@ Route::get('contact_page', function () {
     return view('contact');
 });
 
+Route::get('dashboard_layout', function () {
+    return view('layouts\admin');
+});
 
 
-Route::get('/dashboard', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('admin\dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/dashboard', function () {
+        return view('admin\dashboard');
+    });
+
+
 });
 
 require __DIR__.'/auth.php';
 
-// Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//mannual layouts
+
+
+Route::get('userlogin',[UserController::class,'showLoginForm'])->name('LoginForm');
+Route::get('userregistration',[UserController::class,'showRegistrationForm'])->name('RegistrationForm');
+Route::post('submitreg',[UserController::class, 'register'])->name('submitreg');
+Route::get('login',[UserController::class,'login'])->name('login');
+Route::get('logout',[UserController::class,'logout'])->name('logout');
+
+
+
+
+
+Route::get('admin', function () {
+    return view('admin\dashboard');
+});
+
+

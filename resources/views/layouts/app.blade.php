@@ -5,6 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
+    <link rel="stylesheet" href="{{ asset('css\animate.min.') }}">
+    <!-- Include other missing CSS files -->
+
+    <!-- Include necessary JS files -->
+    <script src="{{ asset('wow\wow.js') }}"></script>
+    <script src="{{ asset('easing\easing.min.js') }}"></script>
+
+    <script src="{{ asset('js\main.js') }}"></script>
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -20,9 +31,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/css/tempusdominus-bootstrap-4.css') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('css\bootstrap.min.css') }}" rel="stylesheet">
@@ -74,23 +85,24 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: wheat;" href="{{ route('LoginForm') }}">LOGIN</a>
+                        </li>
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('RegistrationForm') }}">SIGN UP</a>
+                        </li>
+                        {{-- @auth
+
+
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -104,8 +116,11 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
-                        @endguest
+
+
+                        </li>
+                        @endauth --}}
+
                     </ul>
                 </div>
             </nav>
@@ -213,6 +228,13 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('.dropdown-toggle').dropdown();
+            });
+        </script>
+
 </body>
 
 </html>

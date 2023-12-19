@@ -1,7 +1,9 @@
 @extends('layouts.app')
+@section('title', 'Peaks Platter')
+@section('header', 'Peaks Platter')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -12,9 +14,11 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @endif --}}
 
-                    {{ __('You are logged in!') }}
+                    <h1>welcome
+
+                    </h1>
                 </div>
             </div>
         </div>
