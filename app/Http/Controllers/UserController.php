@@ -22,9 +22,8 @@ class UserController extends Controller
         {
 
             $request->validate([
-                'name' => 'bail|required',
                 'email' => 'required|email',
-                'email' => 'required|password|max:15|min:8',
+                'password' => 'required|max:15|min:8',
             ]);
 
             $credentials = $request->only('email', 'password');
@@ -33,7 +32,7 @@ class UserController extends Controller
                 return redirect()->intended('dashboard');
             }
 
-            return redirect()->back()->withErrors(['error' => 'Invalid credentials']);
+            return redirect()->back()->with('error','Invalid credentials');
         }
 
         public function showRegistrationForm()
@@ -44,9 +43,9 @@ class UserController extends Controller
         public function register(Request $request)
         {
             $request->validate([
-                'name' => 'bail|required',
+                'username' => 'required',
                 'email' => 'required|email',
-                'email' => 'required|password|max:15|min:8',
+                'password' => 'required|max:15|min:8',
             ]);
 
             // Create user

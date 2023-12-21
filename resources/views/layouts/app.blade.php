@@ -79,7 +79,7 @@
                         <a href="{{ 'about_page' }}" class="nav-item nav-link">About</a>
                         <a href="{{ 'services_page' }}" class="nav-item nav-link">Service</a>
                         <a href="{{ 'menu_page' }}" class="nav-item nav-link">Menu</a>
-
+                        <a href="{{ 'team_page' }}" class="nav-item nav-link">Team</a>
                         <a href="{{ 'contact_page' }}" class="nav-item nav-link">Contact</a>
                     </div>
                     <!-- Right Side Of Navbar -->
