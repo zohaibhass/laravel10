@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 
@@ -12,8 +13,10 @@ class MenuController extends Controller
      */
     public function index()
     {
-        menu::all();
-        return view('admin.availablemenu');
+       $menu_data= menu::all();
+
+        return view('admin.availablemenu',['menu_data'=>$menu_data]);
+
     }
 
     /**
@@ -21,7 +24,11 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        $menu_category=Category::all();
+
+        return view('admin.add-menu',['menu_category'=>$menu_category]);
+
+
     }
 
     /**
@@ -29,7 +36,28 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+$request->validate([
+'title'=>'required|max:20',
+'image'=>'nullable',
+'category'=>'',
+'price'=>'required|numeric',
+'description'=>'required|max:50',
+]);
+
+$image_path=$request->file('image')->storeAs('uploads','menuimage.jpg','public');
+
+menu::create([
+    'title'=>$request->input('title'),
+    'image'=>$image_path,
+    'category_id'=>$request->input('category'),
+    'price'=>$request->input('price'),
+    'description'=>$request->input('description'),
+
+]);
+
+return back()->with('success','Menu Added successfully');
+
     }
 
     /**
@@ -59,8 +87,9 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $menu)
     {
-        //
+        Menu::where('id',$menu)->delete();
+        return back()->with('success','menu deleted sucessfully');
     }
 }

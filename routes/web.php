@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
@@ -67,22 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('services', ServiceController::class);
 
     Route::resource('Menus', MenuController::class);
-
-    Route::get('/menu', function () {
-        return view('admin/availablemenu');
-    })->name('foodmenu');
-
-    Route::get('/add_menu', function () {
-        return view('admin/add-menu');
-    })->name('add-menu');
-
-    Route::get('/category', function () {
-        return view('admin/category');
-    })->name('category');
-
-    Route::get('/add-category', function () {
-        return view('admin/add-category');
-    })->name('add-category');
+    Route::resource('categories', CategoryController::class);
 
     Route::get('/members', function () {
         return view('admin/members');

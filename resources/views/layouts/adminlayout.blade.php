@@ -101,9 +101,9 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-cutlery"></i><a href="{{ route('Menus.index') }}">Avaliable Food
                                     Menu</a></li>
-                            <li><i class="fa fa-plus-square"></i><a href="{{ route('add-menu') }}">Add Food Menu</a></li>
-                            <li><i class="fa fa-bars"></i><a href="{{ route('category') }}">Food Categories</a></li>
-                            <li><i class="fa fa-plus-square"></i><a href="{{ route('add-category') }}">Add Food Categories</a></li>
+                            <li><i class="fa fa-plus-square"></i><a href="{{ route('Menus.create') }}">Add Food Menu</a></li>
+                            <li><i class="fa fa-bars"></i><a href="{{ route('categories.index') }}">Food Categories</a></li>
+                            <li><i class="fa fa-plus-square"></i><a href="{{ route('categories.create') }}">Add Food Categories</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
