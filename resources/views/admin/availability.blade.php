@@ -5,7 +5,7 @@
 
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Food Categories</strong>
+                <strong class="card-title">peaks platters availability</strong>
             </div>
 
             @if (session('success'))
@@ -18,35 +18,32 @@
                 </div>
             @endif
 
-            @if (count($categories) > 0)
+            @if (count($availability_data) > 0)
                 <div class="table-stats order-table ov-h">
                     <table class="table ">
                         <thead>
                             <tr>
                                 <th class="serial">#</th>
-                                <th class="avatar">Image</th>
+                                <th class="">Day</th>
 
-                                <th>Title</th>
-                                <th>tag</th>
+                                <th>Open Time</th>
+                                <th>Close Time</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($availability_data as $availality)
                                 <tr>
-                                    <td class="serial">{{ $category->id }}</td>
-                                    <td class="avatar">
-                                        <div class="round-img">
-                                            <a href="#"><img class="rounded-circle"
-                                                    src="{{ asset('storage/' . $category->image) }}" alt=""></a>
-                                        </div>
+                                    <td class="serial">{{ $availality->id }}</td>
+                                    <td class="">
+                                        <span class="name">{{ $availality->day }}</span>
                                     </td>
 
-                                    <td> <span class="name">{{ $category->title }}</span> </td>
-                                    <td> <span class="product">{{ $category->tag }}</span> </td>
+                                    <td> <span class="name">{{ $availality->open_time }}</span> </td>
+                                    <td> <span class="product">{{ $availality->close_time }}</span> </td>
 
                                     <td>
-                                        <form action="{{ route('categories.edit', ['category' => $category['id']]) }}"
+                                        <form action="{{ route('Availabilities.edit', ['Availability' => $availality['id']]) }}"
                                             method="GET" style="display: inline;" enctype="multipart/form-data">
                                             @csrf
                                             @method('GET')
@@ -55,7 +52,7 @@
                                                 onclick="return confirm('Are you sure you want to update this service?')">update</button>
                                             </form>
 
-                                        <form action="{{ route('categories.destroy', ['category' => $category['id']]) }}"
+                                        <form action="{{ route('Availabilities.destroy', ['Availability' => $availality['id']]) }}"
                                             method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
@@ -72,7 +69,7 @@
                 @else
                     <div class="sufee-alert alert with-close alert-secondary mx-5 mt-5 alert-dismissible fade show">
                         <span class="badge badge-pill badge-secondary">Empty</span>
-                        there is not menu.
+                        Availability not found.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>

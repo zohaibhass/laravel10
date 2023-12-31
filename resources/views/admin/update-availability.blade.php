@@ -1,28 +1,38 @@
 @extends('layouts\adminlayout')
 @section('dashboard_title', 'dashboard')
 @section('dashboard_content')
-<div class=" card p-5 container mt-5 mx-3 mb-3">
-    <h2 class="mb-4">Set Daily Availability</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Hotel Timing Update Form</h2>
 
-    <form>
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <label for="mondayStartTime" class="form-label">Monday Start Time</label>
-                <input type="time" class="form-control" id="mondayStartTime" name="mondayStartTime" required>
+    <form action="{{ route('Availabilities.update',['Availability'=>$update_data->id]) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="day">Day</label>
+                <select class="form-control" id="day" name="day" required>
+                    <option value="" disabled selected>Select a day</option>
+                    @foreach ($update_data as $day )
+
+
+                    <option value="{{ $day->id }}">{{ $day->day }}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="col-md-4 mb-3">
-                <label for="mondayEndTime" class="form-label">Monday End Time</label>
-                <input type="time" class="form-control" id="mondayEndTime" name="mondayEndTime" required>
+            <div class="col-md-6 mb-3">
+                <label for="openTime">Opening Time</label>
+                <input type="time" class="form-control" value="{{ $update_data->open_time }}" id="openTime" name="opentime" required>
             </div>
         </div>
 
-        <!-- Repeat the above block for each day of the week -->
-
-        <div class="row">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Set Daily Availability</button>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="closeTime">Closing Time</label>
+                <input type="time" class="form-control" id="closeTime" value="{{ $update_data->close_time }}" name="closetime" required>
             </div>
         </div>
+
+        <button class="btn btn-primary" type="submit">Update Timing</button>
     </form>
 </div>
 

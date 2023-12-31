@@ -1,14 +1,22 @@
 <?php
 
+use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\CategoryController;
+
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\controllers\UserController;
+use App\Models\Availability;
+use App\Models\Category;
 use App\Models\Menu;
+use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -24,40 +32,26 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//----------------routes for frontend------------------
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[ServiceController::class, 'homedata'])->name('/');
+Route::get('/menu',[CategoryController::class, 'showmenu'])->name('show_menu');
+Route::get('/team',[MemberController::class, 'showmembers'])->name('show_members');
+Route::get('/service',[ServiceController::class, 'showservices'])->name('show_services');
+Route::get('/availability',[AvailabilityController::class, 'showavailability'])->name('show_availability');
 
 Route::get('about_page', function () {
     return view('about');
-});
-
-Route::get('services_page', function () {
-    return view('services');
-});
-
-Route::get('menu_page', function () {
-    return view('menu');
-});
-
-Route::get('team_page', function () {
-    return view('team');
 });
 
 Route::get('contact_page', function () {
     return view('contact');
 });
 
-Route::get('dashboard_layout', function () {
-    return view('layouts\admin');
-});
 
 
 
-// Route::get('/dashboard', function () {
-//     return view('admin\dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+//----------------routes for dashboard------------------
 
 Route::middleware('auth')->group(function () {
 
@@ -68,29 +62,22 @@ Route::middleware('auth')->group(function () {
     Route::resource('services', ServiceController::class);
 
     Route::resource('Menus', MenuController::class);
+
     Route::resource('categories', CategoryController::class);
 
-    Route::get('/members', function () {
-        return view('admin/members');
-    })->name('members');
+    Route::resource('Members',MemberController::class);
 
-    Route::get('/add-member', function () {
-        return view('admin/add-member');
-    })->name('add-members');
+    Route::resource('Availabilities',AvailabilityController::class);
 
-    Route::get('/availability', function () {
-        return view('admin/update-availability');
-    })->name('availability');
 });
 
 require __DIR__.'/auth.php';
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//mannual layouts
+//----------------routes for login------------------
 
 
 Route::get('userlogin',[UserController::class,'showLoginForm'])->name('LoginForm');
@@ -103,8 +90,6 @@ Route::get('logout',[UserController::class,'logout'])->name('logout');
 
 
 
-// Route::get('admin', function () {
-//     return view('admin\dashboard');
-// });
+
 
 

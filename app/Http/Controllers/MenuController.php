@@ -71,9 +71,11 @@ return back()->with('success','Menu Added successfully');
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $menu)
     {
-        //
+        $menu_data = Menu::where('id',$menu)->with('categories')->get();
+
+        return view('admin.update_menu', ['menudata' => $menu_data]);
     }
 
     /**
@@ -81,7 +83,7 @@ return back()->with('success','Menu Added successfully');
      */
     public function update(Request $request, string $id)
     {
-        //
+        // $update_data=['title','image','price','category','description'];
     }
 
     /**

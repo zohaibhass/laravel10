@@ -1,41 +1,93 @@
-@extends('layouts.adminlayout')
+@extends('layouts\adminlayout')
 @section('dashboard_title', 'members')
 @section('dashboard_content')
+    <div class='mx-3'>
 
-
-
-    <div class="row mt-5">
-
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mx-auto d-block">
-                        <img class="rounded-circle mx-auto d-block" src="images/admin.jpg" alt="Card image cap">
-                        <h4 class="text-sm-center mt-2 mb-1">Steven Lee</h4>
-                        <h5 class="text-sm-center mt-2 mb-1">position</h5>
-                        <div class="location text-sm-center"><i class="fa fa-map-marker"></i> California, United States</div>
-                    </div>
-                    <hr>
-                    <div class="card-text text-sm-center">
-
-                        <p class="justify">Lorem ipsum dolor sit amet consectetur,
-                            adipisicing elit. Sapiente nulla suscipit commodi error exercitationem debitis a quo dolorum
-                            nam.
-                           </p>
-
-                    </div>
-                    <div class="card-footer text-center mt-2">
-                        <a href="#" class="btn btn-outline-info">update</a>
-                        <a href="#" class="btn btn-outline-danger">delete</a>
-
-                    </div>
-                </div>
-
+        <div class="card">
+            <div class="card-header text-center">
+                <strong class="card-title">Avaliable Members</strong>
             </div>
-        </div>
+
+            @if (session('success'))
+                <div class=" mt-3 mx-2 -bottom-3sufee-alert alert with-close alert-success alert-dismissible fade show">
+                    <span class="badge badge-pill badge-success">Success</span>
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            @endif
+            @if (count($member_data) > 0)
 
 
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th class="avatar">Image</th>
+                                <th>name</th>
+                                <th>posiion</th>
+                                <th>Adress</th>
+                                <th>Description</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($member_data as $member)
+                                <tr>
+                                    <td class="serial">{{ $member->id }}</td>
+                                    <td class="avatar">
+                                        <div class="round-img">
+                                            <a href="#"><img class="rounded-circle"
+                                                    src="{{ asset('storage/' . $member->image) }}" alt=""></a>
+                                        </div>
+                                    </td>
+
+                                    <td> <span class="name">{{ $member->name }}</span> </td>
+                                    <td> <span class="product">{{ $member->position }}</span></td>
+                                    <td>
+
+                                        <span class="product">{{ $member->adress }}</span>
 
 
+                                    <td> <span class="product">{{ $member->description }}</span> </td>
+
+
+                                    <td>
+                                        <form action="{{ route('Members.edit', ['Member' => $member['id']]) }}"
+                                            method="GET" enctype="multipart/form-data" style="display: inline;">
+                                            @csrf
+                                            @method('GET')
+
+                                            <button type="submit" class="btn btn-outline-success"
+                                                onclick="return confirm('Are you sure you want to update this member?')">Update</button>
+                                        </form>
+
+                                        <form action="{{ route('Members.destroy', ['Member' => $member['id']]) }}"
+                                            method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="btn btn-outline-danger"
+                                                onclick="return confirm('Are you sure you want to delete this member?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                @else
+                    <div class="sufee-alert alert with-close alert-secondary mx-5 mt-5 alert-dismissible fade show">
+                        <span class="badge badge-pill badge-secondary">Empty</span>
+                        there is not a Member.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+            @endif
+        </div> <!-- /.table-stats -->
+    </div>
     </div>
 @endsection

@@ -75,12 +75,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="{{ '/' }}" class="nav-item nav-link active">Home</a>
+                        <a href="{{ route('/') }}" class="nav-item nav-link active">Home</a>
                         <a href="{{ 'about_page' }}" class="nav-item nav-link">About</a>
-                        <a href="{{ 'services_page' }}" class="nav-item nav-link">Service</a>
-                        <a href="{{ 'menu_page' }}" class="nav-item nav-link">Menu</a>
-                        <a href="{{ 'team_page' }}" class="nav-item nav-link">Team</a>
-                        <a href="{{ 'contact_page' }}" class="nav-item nav-link">Contact</a>
+                        <a href="{{ route('show_services') }}" class="nav-item nav-link">Service</a>
+                        <a href="{{ route('show_menu') }}" class="nav-item nav-link">Menu</a>
+                        <a href="{{ route('show_members') }}" class="nav-item nav-link">Team</a>
+                        <a href="{{ route('show_availability') }}" class="nav-item nav-link">Schedule</a>
                     </div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -165,75 +165,63 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
-                        <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                        <p>09AM - 09PM</p>
-                        <h5 class="text-light fw-normal">Sunday</h5>
-                        <p>10AM - 08PM</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text"
-                                placeholder="Your email">
-                            <button type="button"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                        </div>
+
                     </div>
                 </div>
+
             </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Peaks Platters</a>, All Right Reserved.
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Peaks Platters</a>, All Right Reserved.
 
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
 
-
-                        </div>
-                        <div class="text-end">
-                            Developed and Designed By <a class="border-bottom"
-                                href="https://www.linkedin.com/in/zohaib-hassan-811310252/
-                            target="_blank">zohaib
-                                hassan</a>
-                        </div>
 
                     </div>
+                    <div class="text-end">
+                        Developed and Designed By <a class="border-bottom"
+                            href="https://www.linkedin.com/in/zohaib-hassan-811310252/
+                            target="_blank">zohaib
+                            hassan</a>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
+    </div>
+    <!-- Footer End -->
 
 
-        <!-- Footer End -->
+    <!-- Footer End -->
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a
-            </div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a
+        </div>
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                $('.dropdown-toggle').dropdown();
-            });
-        </script>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
 
 </body>
 

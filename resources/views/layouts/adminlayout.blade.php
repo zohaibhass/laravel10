@@ -110,9 +110,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"><i class=" menu-icon fa fa-users"></i>Members</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class=" menu-icon fa fa-users"></i><a href="{{ route('members') }}">Avlaiable Members</a>
+                            <li><i class=" menu-icon fa fa-users"></i><a href="{{ route('Members.index') }}">Avlaiable Members</a>
                             </li>
-                            <li><i class="fa fa-plus-square"></i><a href="{{ route('add-members') }}">Add Member</a></li>
+                            <li><i class="fa fa-plus-square"></i><a href="{{ route('Members.create') }}">Add Member</a></li>
                         </ul>
                     </li>
 
@@ -121,7 +121,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"><i class=" menu-icon fa fa-calendar"></i>Availability</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-edit"></i><a href="{{ route('availability') }}">Update Availability</a>
+                            <li><i class=" menu-icon fa fa-calendar"></i><a href="{{ route('Availabilities.index') }}">Availability</a>
+                            </li>
+                            <li><i class="fa fa-plus-square"></i><a href="{{ route('Availabilities.create') }}">Add Availability</a>
                             </li>
 
                         </ul>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('adress');
             $table->string('position');
             $table->string('image')->nullable();
-            $table->integer('description');
+            $table->string('description');
 
 
             $table->timestamps();

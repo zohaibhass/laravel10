@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -62,7 +63,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $update_cat=Category::find($id);
+        return view('admin.update_category',['update_cat'=>$update_cat]);
     }
 
     /**
@@ -70,7 +72,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $uniquefilename=$request->getClientOriginalName();
+        $image_path=$request->file('image')->storeAs('uploads',$uniquefilename,'public');
+
+        $update_data=['title',$image_path,'tag'];
+
+
+        Category::where('id',$id)->update($update_data);
     }
 
     /**
@@ -80,5 +89,12 @@ class CategoryController extends Controller
     {
         Category::first()->delete();
         return back()->with('success','category deleted sucessfully');
+    }
+
+    public function showmenu(){
+        $menu_data=Menu::all();
+        $category_data=Category::all();
+        return view('menu',['category'=>$category_data,
+                               'menu'=> $menu_data]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Availability;
+use App\Models\Menu;
 use App\Models\Service;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -101,5 +103,21 @@ $request->validate(['image'=>'nullable']);
 
 
         return back()->with('success', 'deleted successfully');
+    }
+
+    public function showservices(){
+        $services=Service::all();
+
+       return view('services',['services_data'=>$services]);
+    }
+
+    public function homedata(){
+
+        $service=Service::all();
+        $menu=Menu::all();
+
+        return view('welcome',['services'=>$service,'menus'=>$menu]);
+
+
     }
 }
